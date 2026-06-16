@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Лариса Ленешмидт — художник. Авторская живопись, в которой цвет, фактура и глубина становятся частью пространства."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content="Лариса Ленешмидт — художник" />
+    <meta
+      property="og:description"
+      content="Авторская живопись Ларисы Ленешмидт: цвет, фактура, глубина и гармония пространства."
+    />
+    <meta property="og:image" content="assets/hero.jpg" />
+    <meta name="theme-color" content="#111111" />
+    <link rel="preload" as="image" href="assets/hero.jpg" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23111111'/%3E%3Cpath d='M19 45V16h5v24h14v5H19Zm23 0V16h5v29h-5Z' fill='%23A78A58'/%3E%3C/svg%3E" />
+    <title>Лариса Ленешмидт — художник</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        --black: #111111;
+        --graphite: #252525;
+        --milk: #f5f2ec;
+        --white: #faf9f6;
+        --grey: #77736d;
+        --gold: #a78a58;
+        --line: rgba(167, 138, 88, 0.28);
+        --dark-line: rgba(245, 242, 236, 0.12);
+        --header-height: 86px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: var(--header-height);
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", "Montserrat", Arial, sans-serif;
+        color: var(--black);
+        background: var(--white);
+        overflow-x: hidden;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 5px;
+      }
+
+      .container {
+        width: min(100% - 40px, 1180px);
+        margin-inline: auto;
+      }
+
+      .site-header {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 1000;
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid transparent;
+        transition: background 0.35s ease, border-color 0.35s ease, height 0.35s ease;
+      }
+
+      .site-header.scrolled,
+      .site-header.menu-active {
+        height: 74px;
+        background: rgba(17, 17, 17, 0.86);
+        border-color: rgba(245, 242, 236, 0.1);
+        backdrop-filter: blur(18px);
+      }
+
+      .header-inner {
+        width: min(100% - 40px, 1240px);
+        margin-inline: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        width: 225px;
+        min-width: 170px;
+      }
+
+      .brand img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .nav-list {
+        display: flex;
+        align-items: center;
+        gap: clamp(18px, 2.6vw, 38px);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .nav-link {
+        position: relative;
+        color: var(--milk);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        opacity: 0.88;
+        transition: color 0.25s ease, opacity 0.25s ease;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -8px;
+        height: 1px;
+        transform: scaleX(0);
+        transform-origin: right;
+        background: var(--gold);
+        transition: transform 0.28s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--gold);
+        opacity: 1;
+      }
+
+      .nav-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .burger {
+        display: none;
+        width: 46px;
+        height: 46px;
+        border: 1px solid rgba(245, 242, 236, 0.22);
+        border-radius: 50%;
+        background: rgba(245, 242, 236, 0.04);
+        cursor: pointer;
+        position: relative;
+      }
+
+      .burger span {
+        position: absolute;
+        left: 13px;
+        width: 18px;
+        height: 1px;
+        background: var(--milk);
+        transition: transform 0.28s ease, top 0.28s ease, opacity 0.2s ease;
+      }
+
+      .burger span:nth-child(1) { top: 16px; }
+      .burger span:nth-child(2) { top: 22px; }
+      .burger span:nth-child(3) { top: 28px; }
+
+      .burger[aria-expanded="true"] span:nth-child(1) {
+        top: 22px;
+        transform: rotate(45deg);
+      }
+
+      .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+
+      .burger[aria-expanded="true"] span:nth-child(3) {
+        top: 22px;
+        transform: rotate(-45deg);
+      }
+
+      .hero {
+        min-height: 100svh;
+        position: relative;
+        display: grid;
+        align-items: end;
+        color: var(--milk);
+        background: var(--black);
+        overflow: hidden;
+      }
+
+      .hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 40% center;
+        opacity: 0.88;
+        animation: gentleScale 14s ease-out forwards;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+          linear-gradient(90deg, rgba(17,17,17,0.84) 0%, rgba(17,17,17,0.54) 42%, rgba(17,17,17,0.1) 100%),
+          linear-gradient(0deg, rgba(17,17,17,0.88) 0%, rgba(17,17,17,0.24) 54%, rgba(17,17,17,0.42) 100%);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 160px 0 86px;
+        max-width: 760px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        color: var(--gold);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 56px;
+        height: 1px;
+        background: currentColor;
+      }
+
+      h1,
+      h2,
+      h3,
+      blockquote {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 500;
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(58px, 9vw, 128px);
+        line-height: 0.86;
+        letter-spacing: -0.055em;
+        max-width: 880px;
+      }
+
+      .hero-text {
+        max-width: 670px;
+        margin: 30px 0 38px;
+        font-size: clamp(17px, 2vw, 23px);
+        line-height: 1.62;
+        font-weight: 300;
+        color: rgba(245, 242, 236, 0.86);
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 0 28px;
+        border: 1px solid var(--gold);
+        color: var(--milk);
+        background: rgba(167, 138, 88, 0.08);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        transition: background 0.28s ease, color 0.28s ease, transform 0.28s ease;
+      }
+
+      .button:hover {
+        background: var(--gold);
+        color: var(--black);
+        transform: translateY(-2px);
+      }
+
+      .button.dark {
+        color: var(--black);
+        background: transparent;
+      }
+
+      .button.dark:hover {
+        color: var(--white);
+        background: var(--black);
+        border-color: var(--black);
+      }
+
+      section {
+        position: relative;
+      }
+
+      .section-pad {
+        padding: clamp(78px, 10vw, 142px) 0;
+      }
+
+      .section-kicker {
+        color: var(--gold);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+
+      .section-title {
+        font-size: clamp(42px, 6vw, 78px);
+        line-height: 0.98;
+        letter-spacing: -0.035em;
+        color: var(--black);
+      }
+
+      .about {
+        background: var(--milk);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: clamp(42px, 7vw, 94px);
+        align-items: center;
+      }
+
+      .about-media {
+        position: relative;
+      }
+
+      .about-media::before {
+        content: "";
+        position: absolute;
+        inset: 22px -22px -22px 22px;
+        border: 1px solid var(--line);
+        pointer-events: none;
+      }
+
+      .about-media img {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        object-position: 38% center;
+        filter: saturate(0.92);
+      }
+
+      .about-copy {
+        font-size: clamp(16px, 1.45vw, 18px);
+        line-height: 1.86;
+        color: var(--graphite);
+      }
+
+      .about-copy p {
+        margin: 0 0 18px;
+      }
+
+      .about-copy p:first-of-type {
+        margin-top: 34px;
+        font-weight: 600;
+        color: var(--black);
+      }
+
+      .creativity {
+        background: var(--white);
+      }
+
+      .intro-grid {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1fr);
+        gap: clamp(34px, 7vw, 104px);
+        align-items: start;
+      }
+
+      .lead-text {
+        margin: 0;
+        color: var(--graphite);
+        font-size: clamp(18px, 2vw, 25px);
+        line-height: 1.68;
+        font-weight: 300;
+      }
+
+      .lead-text + .lead-text {
+        margin-top: 24px;
+      }
+
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: clamp(52px, 7vw, 86px);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .principle {
+        padding: clamp(28px, 4vw, 46px);
+        min-height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 1px solid var(--line);
+        transition: background 0.3s ease, transform 0.3s ease;
+      }
+
+      .principle:last-child { border-right: 0; }
+
+      .principle:hover {
+        background: var(--milk);
+        transform: translateY(-4px);
+      }
+
+      .principle-num {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 34px;
+      }
+
+      .principle h3 {
+        margin: 30px 0 14px;
+        font-size: clamp(30px, 3.2vw, 46px);
+        color: var(--black);
+      }
+
+      .principle p {
+        margin: 0;
+        color: var(--grey);
+        line-height: 1.75;
+        font-size: 15px;
+      }
+
+      .approach {
+        background: var(--black);
+        color: var(--milk);
+      }
+
+      .approach .section-title {
+        color: var(--milk);
+      }
+
+      .approach-grid {
+        display: grid;
+        grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
+        gap: clamp(38px, 8vw, 112px);
+      }
+
+      .approach-text {
+        margin: 0;
+        color: rgba(245, 242, 236, 0.78);
+        font-size: clamp(19px, 2.2vw, 29px);
+        line-height: 1.62;
+        font-weight: 300;
+      }
+
+      .approach-lines {
+        margin-top: clamp(46px, 6vw, 72px);
+        border-top: 1px solid var(--dark-line);
+      }
+
+      .line-item {
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        gap: 28px;
+        padding: 26px 0;
+        border-bottom: 1px solid var(--dark-line);
+        color: rgba(245, 242, 236, 0.72);
+      }
+
+      .line-item span {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 26px;
+      }
+
+      .line-item p {
+        margin: 0;
+        line-height: 1.75;
+      }
+
+      .quote {
+        background: var(--graphite);
+        color: var(--milk);
+        padding: clamp(86px, 11vw, 150px) 0;
+        text-align: center;
+      }
+
+      .quote-inner {
+        width: min(100% - 40px, 920px);
+        margin-inline: auto;
+      }
+
+      .quote-mark {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(72px, 9vw, 126px);
+        line-height: 0.4;
+        margin-bottom: 24px;
+      }
+
+      blockquote {
+        font-size: clamp(36px, 5.7vw, 76px);
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+      }
+
+      cite {
+        display: block;
+        margin-top: 30px;
+        color: var(--gold);
+        font-style: normal;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .contacts {
+        background: var(--milk);
+      }
+
+      .contacts-grid {
+        display: grid;
+        grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1fr);
+        gap: clamp(40px, 8vw, 116px);
+      }
+
+      .contact-card {
+        padding: clamp(30px, 5vw, 58px);
+        background: var(--white);
+        border: 1px solid var(--line);
+      }
+
+      .contact-card p {
+        margin: 0 0 32px;
+        color: var(--graphite);
+        font-size: clamp(17px, 1.8vw, 22px);
+        line-height: 1.72;
+      }
+
+      .contact-list {
+        display: grid;
+        gap: 18px;
+        margin: 0 0 34px;
+      }
+
+      .contact-row {
+        display: grid;
+        grid-template-columns: 96px 1fr;
+        gap: 18px;
+        align-items: baseline;
+        padding-bottom: 18px;
+        border-bottom: 1px solid rgba(119, 115, 109, 0.18);
+      }
+
+      .contact-row dt {
+        color: var(--gold);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .contact-row dd {
+        margin: 0;
+        color: var(--black);
+        line-height: 1.55;
+      }
+
+      .contact-row a {
+        transition: color 0.25s ease;
+        overflow-wrap: anywhere;
+      }
+
+      .contact-row a:hover {
+        color: var(--gold);
+      }
+
+      .footer {
+        background: var(--black);
+        color: var(--milk);
+        padding: 44px 0;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 28px;
+        border-top: 1px solid var(--dark-line);
+        padding-top: 28px;
+      }
+
+      .footer-name {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 30px;
+        line-height: 1;
+      }
+
+      .footer-role,
+      .copyright {
+        margin: 8px 0 0;
+        color: rgba(245, 242, 236, 0.62);
+        font-size: 13px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes gentleScale {
+        from { transform: scale(1.04); }
+        to { transform: scale(1); }
+      }
+
+      @media (max-width: 920px) {
+        :root { --header-height: 76px; }
+
+        .brand { width: 190px; }
+
+        .burger { display: inline-flex; }
+
+        .site-nav {
+          position: fixed;
+          inset: 0;
+          z-index: -1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(17, 17, 17, 0.97);
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.32s ease, visibility 0.32s ease;
+        }
+
+        .site-nav.open {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .nav-list {
+          flex-direction: column;
+          gap: 28px;
+        }
+
+        .nav-link {
+          font-family: "Cormorant Garamond", Georgia, serif;
+          font-size: clamp(34px, 8vw, 58px);
+          letter-spacing: -0.02em;
+          text-transform: none;
+          font-weight: 500;
+        }
+
+        .hero-image {
+          object-position: 38% center;
+        }
+
+        .hero::before {
+          background:
+            linear-gradient(90deg, rgba(17,17,17,0.78), rgba(17,17,17,0.28)),
+            linear-gradient(0deg, rgba(17,17,17,0.9) 0%, rgba(17,17,17,0.22) 62%, rgba(17,17,17,0.46) 100%);
+        }
+
+        .about-grid,
+        .intro-grid,
+        .approach-grid,
+        .contacts-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .about-media {
+          max-width: 560px;
+        }
+
+        .principles {
+          grid-template-columns: 1fr;
+        }
+
+        .principle {
+          min-height: 210px;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .principle:last-child { border-bottom: 0; }
+      }
+
+      @media (max-width: 620px) {
+        .container,
+        .header-inner,
+        .quote-inner {
+          width: min(100% - 28px, 1180px);
+        }
+
+        .site-header,
+        .site-header.scrolled,
+        .site-header.menu-active {
+          height: 68px;
+        }
+
+        .brand { width: 158px; }
+
+        .hero {
+          min-height: 720px;
+        }
+
+        .hero-image {
+          object-position: 34% center;
+        }
+
+        .hero-content {
+          padding: 122px 0 48px;
+        }
+
+        h1 {
+          font-size: clamp(48px, 16vw, 76px);
+          line-height: 0.92;
+        }
+
+        .hero-text {
+          margin: 24px 0 30px;
+          font-size: 16px;
+        }
+
+        .eyebrow {
+          gap: 12px;
+          letter-spacing: 0.18em;
+        }
+
+        .eyebrow::before { width: 36px; }
+
+        .section-pad {
+          padding: 70px 0;
+        }
+
+        .section-title {
+          font-size: clamp(38px, 13vw, 56px);
+        }
+
+        .about-media::before {
+          inset: 14px -10px -14px 14px;
+        }
+
+        .about-media img {
+          aspect-ratio: 1 / 1.1;
+          object-position: 35% center;
+        }
+
+        .line-item,
+        .contact-row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .contact-card {
+          padding: 26px 18px;
+        }
+
+        .button {
+          width: 100%;
+          padding-inline: 18px;
+          text-align: center;
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .container,
+        .header-inner,
+        .quote-inner {
+          width: min(100% - 24px, 1180px);
+        }
+
+        .brand { width: 146px; }
+        .burger { width: 42px; height: 42px; }
+        .burger span { left: 12px; }
+        .hero { min-height: 680px; }
+        .hero-text { font-size: 15px; }
+        .about-copy { font-size: 15px; }
+        .principle { padding: 26px 18px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+    <script data-arena-recording="true">(function(){
+"use strict";
+var SK="__arena_rec",RRWEB_CDN="https://cdn.jsdelivr.net/npm/rrweb@2.0.0-alpha.4/dist/rrweb.min.js";
+var MAX_RECORDING_MS=600000,MAX_RRWEB_EVENTS=30000,MAX_INTERACTIONS=5000,MAX_CURSOR_POINTS=10000,recStopped=false;
+var stored=null;try{var raw=sessionStorage.getItem(SK);if(raw)stored=JSON.parse(raw);}catch(ex){}
+var meta=stored?stored.m||null:null,rrwebEvents=stored?stored.r||[]:[],rrwebStarted=false,startTime=stored?stored.st||Date.now():Date.now();
+var interactions=stored?stored.i||[]:[],cursorPath=stored?stored.c||[]:[],lastCursorSample=0,lastScrollSample=0;
+var pageHeight=document.documentElement.scrollHeight;
+var viewport={width:window.innerWidth,height:window.innerHeight};
+function isCapped(){if(recStopped)return true;if(Date.now()-startTime>=MAX_RECORDING_MS){recStopped=true;return true;}return false;}
+function persist(){try{var d=JSON.stringify({r:rrwebEvents,i:interactions,c:cursorPath,m:meta,st:startTime});sessionStorage.setItem(SK,d);}catch(ex){rrwebEvents=rrwebEvents.slice(Math.floor(rrwebEvents.length/2));try{sessionStorage.setItem(SK,JSON.stringify({r:rrwebEvents,i:interactions,c:cursorPath,m:meta,st:startTime}));}catch(ex2){}}}
+setInterval(persist,5000);
+window.addEventListener("resize",function(){viewport={width:window.innerWidth,height:window.innerHeight};pageHeight=document.documentElement.scrollHeight;});
+document.addEventListener("click",function(e){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;var el=e.target;var tag=el.tagName?el.tagName.toLowerCase():"";var text=(el.textContent||"").trim().substring(0,80);var classes=el.className&&typeof el.className==="string"?el.className.substring(0,120):"";interactions.push({type:"click",t:Date.now()-startTime,x:Math.round(e.clientX),y:Math.round(e.clientY),element:{tag:tag,text:text,classes:classes}});},true);
+window.addEventListener("scroll",function(){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;var now=Date.now();if(now-lastScrollSample<200)return;lastScrollSample=now;var scrollY=Math.round(window.scrollY||window.pageYOffset||0);var depthPct=pageHeight>viewport.height?Math.min(100,Math.round(((scrollY+viewport.height)/pageHeight)*100)):100;interactions.push({type:"scroll",t:now-startTime,y:scrollY,depth_pct:depthPct});},{passive:true});
+document.addEventListener("mousemove",function(e){if(isCapped()||cursorPath.length>=MAX_CURSOR_POINTS)return;var now=Date.now();if(now-lastCursorSample<250)return;lastCursorSample=now;cursorPath.push([Math.round(e.clientX),Math.round(e.clientY),now-startTime]);},{passive:true});
+document.addEventListener("keydown",function(e){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;if(e.target&&(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA"))return;interactions.push({type:"keydown",t:Date.now()-startTime,key:e.key});},true);
+function buildAnalytics(){if(!meta)return null;var ph=document.documentElement.scrollHeight;var maxScroll=0,clickElements={},firstClick=null,firstScroll=null,totalDistance=0;for(var i=0;i<interactions.length;i++){var ev=interactions[i];if(ev.type==="scroll"){if(ev.depth_pct>maxScroll)maxScroll=ev.depth_pct;if(!firstScroll)firstScroll=ev.t;}if(ev.type==="click"){if(!firstClick)firstClick=ev.t;var key=ev.element.tag+":"+ev.element.text.substring(0,30);clickElements[key]=true;}}for(var j=1;j<cursorPath.length;j++){var dx=cursorPath[j][0]-cursorPath[j-1][0];var dy=cursorPath[j][1]-cursorPath[j-1][1];totalDistance+=Math.sqrt(dx*dx+dy*dy);}var duration=Date.now()-startTime;var clickHeatmap=[];for(var k=0;k<interactions.length;k++){if(interactions[k].type==="click")clickHeatmap.push([interactions[k].x,interactions[k].y]);}return{generation_id:meta.generationId,tournament_id:meta.tournamentId,started_at:new Date(startTime).toISOString(),ended_at:new Date().toISOString(),duration_ms:duration,viewport:viewport,page_height:ph,interactions:interactions,cursor_path:cursorPath,click_heatmap:clickHeatmap,summary:{total_clicks:clickHeatmap.length,total_scrolls:interactions.filter(function(e){return e.type==="scroll";}).length,max_scroll_depth_pct:maxScroll,unique_elements_clicked:Object.keys(clickElements).length,time_to_first_click_ms:firstClick,time_to_first_scroll_ms:firstScroll,cursor_distance_px:Math.round(totalDistance),active_time_ms:duration}};}
+function loadRrweb(){if(rrwebStarted)return;rrwebStarted=true;var s=document.createElement("script");s.src=RRWEB_CDN;s.onload=function(){var rec=(window.rrweb&&window.rrweb.record)||window.rrwebRecord;if(!rec)return;rec({emit:function(event){if(rrwebEvents.length>=MAX_RRWEB_EVENTS||isCapped())return;rrwebEvents.push(event);}});};s.onerror=function(){};document.head.appendChild(s);}
+window.addEventListener("message",function(e){if(!e.data||typeof e.data.type!=="string")return;if(e.data.type==="arena:init"){if(!meta)startTime=Date.now();meta={generationId:e.data.generationId||e.data.modelId,tournamentId:e.data.tournamentId};persist();loadRrweb();if(e.source)e.source.postMessage({type:"arena:init-ack",generationId:meta.generationId},"*");}if(e.data.type==="arena:flush"){var resp={type:"arena:recording-data",generationId:meta?meta.generationId:null,rrwebEvents:rrwebEvents,analytics:buildAnalytics()};try{sessionStorage.removeItem(SK);}catch(ex){}if(e.source)e.source.postMessage(resp,"*");}});
+loadRrweb();
+})();</script>
+  <script data-arena-views="true">(function(){var isTop=false;try{isTop=window.self===window.top;}catch(e){}if(!isTop)return;window.__ARENA_META={generationId:"gpt-5.5",tournamentId:"6ca31ee7-5c55-4078-b1fe-b5c22b01bda6"};var payload={tournamentId:"6ca31ee7-5c55-4078-b1fe-b5c22b01bda6",modelId:"gpt-5.5"};try{var r=document.referrer;if(r){var u=new URL(r);payload.referrerDomain=u.hostname;}}catch(e){}try{var vid=null;try{vid=localStorage.getItem('arena_vid');}catch(e){}if(!vid){vid=typeof crypto!=="undefined"&&crypto.randomUUID?crypto.randomUUID():(Date.now().toString(36)+Math.random().toString(36).slice(2)).slice(0,32);try{localStorage.setItem('arena_vid',vid);}catch(e){}}if(vid)payload.viewerId=vid;}catch(e){}try{fetch("https://www.designarena.ai/api/agon/page-views",{"method":"POST","headers":{"Content-Type":"application/json"},"body":JSON.stringify(payload),"keepalive":true});}catch(e){}})();</script>
+</head>
+  <body>
+    <header class="site-header" id="siteHeader">
+      <div class="header-inner">
+        <a class="brand" href="#glavnaya" aria-label="Лариса Ленешмидт — на главную">
+          <img src="assets/logo.png" alt="Логотип Ларисы Ленешмидт" width="540" height="120" />
+        </a>
+        <nav class="site-nav" id="siteNav" aria-label="Основная навигация">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="#glavnaya">Главная</a></li>
+            <li><a class="nav-link" href="#o-hudozhnike">О художнике</a></li>
+            <li><a class="nav-link" href="#tvorchestvo">Творчество</a></li>
+            <li><a class="nav-link" href="#podhod">Философия</a></li>
+            <li><a class="nav-link" href="#kontakty">Контакты</a></li>
+          </ul>
+        </nav>
+        <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-controls="siteNav" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="glavnaya" aria-label="Главный экран">
+        <img class="hero-image" src="assets/hero.jpg" alt="Художник Лариса Ленешмидт" width="1179" height="1010" />
+        <div class="container">
+          <div class="hero-content reveal">
+            <div class="eyebrow">Художник</div>
+            <h1>Лариса Ленешмидт</h1>
+            <p class="hero-text">Авторская живопись, в которой цвет, фактура и глубина становятся частью пространства.</p>
+            <a class="button" href="#o-hudozhnike">о художнике</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="about section-pad" id="o-hudozhnike">
+        <div class="container about-grid">
+          <div class="about-media reveal">
+            <img src="assets/about.jpg" alt="Лариса Ленешмидт в творческом пространстве" width="1179" height="1010" loading="lazy" />
+          </div>
+          <div class="about-copy reveal">
+            <div class="section-kicker">О художнике</div>
+            <h2 class="section-title">Искусство как состояние и диалог</h2>
+            <p>Я — Лариса Ленешмидт, художник.</p>
+            <p>Я верю в страсть, уникальность, чистоту и гармонию. Для меня искусство — это возможность передавать чувства, мысли и настроение через цвет, фактуру и композицию.</p>
+            <p>Тщательно подобранные оттенки становятся частью художественного языка. Они создают историю, которая раскрывается на холсте и естественно входит в интерьер.</p>
+            <p>Я стремлюсь создавать произведения вне времени — спокойные, глубокие и уникальные. Каждая работа рождается из идеи, внутреннего ощущения и поиска идеального цветового решения.</p>
+            <p>Искусство для меня — это состояние, энергия и диалог между художником, произведением и зрителем.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="creativity section-pad" id="tvorchestvo">
+        <div class="container">
+          <div class="intro-grid">
+            <div class="reveal">
+              <div class="section-kicker">Творчество</div>
+              <h2 class="section-title">Цвет, глубина и фактура</h2>
+            </div>
+            <div class="reveal">
+              <p class="lead-text">Работы Ларисы строятся на сочетании цвета, глубины и фактуры. Многослойная техника придаёт поверхности объём, движение и внутреннее пространство. Каждый слой продолжает предыдущий, постепенно формируя композицию, настроение и характер произведения.</p>
+              <p class="lead-text">Это искусство не диктует единственную интерпретацию, а приглашает остановиться, рассмотреть детали и почувствовать собственные эмоции.</p>
+            </div>
+          </div>
+
+          <div class="principles" aria-label="Основы творчества">
+            <article class="principle reveal">
+              <div>
+                <div class="principle-num">01</div>
+                <h3>Цвет</h3>
+              </div>
+              <p>Гармоничная палитра создаёт настроение и связывает произведение с пространством.</p>
+            </article>
+            <article class="principle reveal">
+              <div>
+                <div class="principle-num">02</div>
+                <h3>Фактура</h3>
+              </div>
+              <p>Многослойность и объём делают поверхность живой и выразительной.</p>
+            </article>
+            <article class="principle reveal">
+              <div>
+                <div class="principle-num">03</div>
+                <h3>Гармония</h3>
+              </div>
+              <p>Баланс формы, оттенков и воздуха помогает произведению естественно существовать в интерьере.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="approach section-pad" id="podhod">
+        <div class="container">
+          <div class="approach-grid">
+            <div class="reveal">
+              <div class="section-kicker">Художественный подход</div>
+              <h2 class="section-title">До первого прикосновения к холсту</h2>
+            </div>
+            <div class="reveal">
+              <p class="approach-text">Создание каждой работы начинается до первого прикосновения к холсту. Лариса изучает сочетания оттенков, ищет ритм композиции и постепенно выстраивает многослойную поверхность.</p>
+              <div class="approach-lines" aria-label="Этапы художественного подхода">
+                <div class="line-item">
+                  <span>01</span>
+                  <p>Наблюдение за оттенками, их взаимодействием и эмоциональной глубиной.</p>
+                </div>
+                <div class="line-item">
+                  <span>02</span>
+                  <p>Поиск внутреннего ритма композиции, баланса формы и свободного пространства.</p>
+                </div>
+                <div class="line-item">
+                  <span>03</span>
+                  <p>Постепенное создание поверхности, где каждый слой сохраняет свою тишину и выразительность.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote" aria-label="Цитата">
+        <div class="quote-inner reveal">
+          <div class="quote-mark" aria-hidden="true">“</div>
+          <blockquote>Неважно, что вы делаете, делайте это от всего сердца.</blockquote>
+          <cite>Конфуций</cite>
+        </div>
+      </section>
+
+      <section class="contacts section-pad" id="kontakty">
+        <div class="container contacts-grid">
+          <div class="reveal">
+            <div class="section-kicker">Контакты</div>
+            <h2 class="section-title">Свяжитесь с Ларисой</h2>
+          </div>
+          <div class="contact-card reveal">
+            <p>Свяжитесь с Ларисой, чтобы узнать больше о её творчестве и сотрудничестве.</p>
+            <dl class="contact-list">
+              <div class="contact-row">
+                <dt>Город</dt>
+                <dd>Падерборн, Германия</dd>
+              </div>
+              <div class="contact-row">
+                <dt>Телефон</dt>
+                <dd><a href="tel:+4916090309913">+49 160 90309913</a></dd>
+              </div>
+              <div class="contact-row">
+                <dt>E-mail</dt>
+                <dd><a href="mailto:larisa.leneschmidt@gmail.com">larisa.leneschmidt@gmail.com</a></dd>
+              </div>
+            </dl>
+            <a class="button dark" href="https://wa.me/4916090309913?text=Здравствуйте%21+Я+хочу+узнать+больше+о+творчестве+Ларисы+Ленешмидт" target="_blank" rel="noopener noreferrer">Написать в WhatsApp</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="footer-name">Лариса Ленешмидт</div>
+          <p class="footer-role">Художник</p>
+        </div>
+        <p class="copyright">© 2026 Larisa Leneschmidt. Все права защищены.</p>
+      </div>
+    </footer>
+
+    <script>
+      const header = document.getElementById("siteHeader");
+      const nav = document.getElementById("siteNav");
+      const burger = document.getElementById("burger");
+      const navLinks = document.querySelectorAll(".nav-link, .brand, .hero .button");
+
+      function setHeaderState() {
+        header.classList.toggle("scrolled", window.scrollY > 18);
+      }
+
+      function closeMenu() {
+        nav.classList.remove("open");
+        header.classList.remove("menu-active");
+        burger.setAttribute("aria-expanded", "false");
+        burger.setAttribute("aria-label", "Открыть меню");
+        document.body.classList.remove("menu-open");
+      }
+
+      burger.addEventListener("click", () => {
+        const isOpen = burger.getAttribute("aria-expanded") === "true";
+        burger.setAttribute("aria-expanded", String(!isOpen));
+        burger.setAttribute("aria-label", isOpen ? "Открыть меню" : "Закрыть меню");
+        nav.classList.toggle("open", !isOpen);
+        header.classList.toggle("menu-active", !isOpen);
+        document.body.classList.toggle("menu-open", !isOpen);
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => closeMenu());
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMenu();
+      });
+
+      window.addEventListener("scroll", setHeaderState, { passive: true });
+      setHeaderState();
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.16 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+    </script>
+  </body>
+</html>
